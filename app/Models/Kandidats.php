@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class Kandidats extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -23,6 +24,11 @@ class Kandidats extends Model
         'visi_misi',
         'url',
     ];
+
+    public function AllData()
+    {
+        return DB::table('kandidats')->get();
+    }
 
     public function hasils()
     {

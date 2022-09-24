@@ -36,7 +36,7 @@
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
                     <!-- <li class="nav-item"><a class="nav-link" href="#about">About</a></li> -->
                     <li class="nav-item"><a class="nav-link" href="#grafikchart">GRAFIK PEMILIHAN</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#hasils">HASIL PEMILIHAN</a></li>
+                    {{-- <li class="nav-item"><a class="nav-link" href="#hasils">HASIL PEMILIHAN</a></li> --}}
                     <li class="nav-item"><a class="nav-link" href="#services">LAYANAN</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">CONTACT</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">LOG IN</a></li>
@@ -72,8 +72,57 @@
         </div>
     </section>
 
+    {{-- grafikjs --}}
+    <script>
+        const labels = [
+            @foreach($landing as $data)
+            '{{ $data-> nama_kandidat }}',
+            @endforeach
+        ];
+
+        const datas = [
+            @foreach($allKandidats as $data)
+            '{{ $data }}',
+            @endforeach
+            10, 5 ,2, 20, 30, 45,
+        ];
+        
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Perolehan Suara',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                minBarLength: 10,
+                data: datas
+            }]
+        };
+        const config = {
+            type: 'bar',
+            data: data
+                // options: {
+                //     scales: {
+                //         yAxes: [{
+                //             display:true,
+                //             ticks: {
+                //                 min: 0,
+                //                 max: 100,
+                //                 stepSize: 20
+                //             }
+                //         }]
+                //     }
+                // },
+            };
+
+        const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+        );
+    </script>
+
+
     {{-- Hasil Pemilihan --}}
-    <section class="page-section bg-dark text-white" id="hasils">
+    {{-- <section class="page-section bg-dark text-white" id="hasils">
         <div class="container px-4 px-lg-5">
             <h2 class="text-center mt-0">Hasil Pemilihan</h2>
             <hr class="divider" />
@@ -98,7 +147,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     {{-- grafik pemilihan1 --}}
     {{-- <section class="page-section bg-dark text-white" id="grafikchart">
@@ -223,7 +272,7 @@
     </script> --}}
 
     {{-- grafikjs --}}
-    <script>
+    {{-- <script>
         const labels = [
             'Muhammad Yusran Lalogau & Syahban Samanna',
             'Abd. Rahman Assagaf & Muammar Muhayang',
@@ -235,9 +284,10 @@
                 label: 'Perolehan Suara',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: [{{ $kandidat1-> count() }}, 
-                       {{ $kandidat2-> count() }}, 
-                       {{ $kandidat3-> count() }},
+                data: [
+                    //    {{ $kandidat1-> count() }}, 
+                    //    {{ $kandidat2-> count() }}, 
+                    //    {{ $kandidat3-> count() }},
                         10, 5, 2, 20, 30, 45],
             }]
         };
@@ -251,7 +301,7 @@
         document.getElementById('myChart'),
         config
         );
-    </script>
+    </script> --}}
     
 </body>
 
