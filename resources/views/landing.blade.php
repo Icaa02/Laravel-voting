@@ -95,6 +95,7 @@
                 borderColor: 'rgb(255, 99, 132)',
                 minBarLength: 10,
                 data: datas
+                
             }]
         };
         const config = {
